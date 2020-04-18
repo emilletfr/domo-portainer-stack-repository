@@ -1,0 +1,17 @@
+version: '2'
+
+services:
+  node-red:
+    image: nodered/node-red
+    environment:
+      - TZ=Europe/Paris
+    restart: unless-stopped
+    volumes:
+      - /home/pi/.node-red:/data
+    network_mode: host
+
+  broker:
+    image: eclipse-mosquitto
+    restart: unless-stopped
+    network_mode: host
+    
