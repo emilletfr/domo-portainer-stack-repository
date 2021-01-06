@@ -2,7 +2,8 @@ version: '2'
 
 services:
   node-red:
-    image: nodered/node-red
+    container_name: node-red
+    image: nodered/node-red:1.2.6
     environment:
       - TZ=Europe/Paris
     restart: unless-stopped
@@ -11,6 +12,7 @@ services:
     network_mode: host
 
   broker:
+    container_name: eclipse-mosquitto
     image: eclipse-mosquitto
     restart: unless-stopped
     network_mode: host
