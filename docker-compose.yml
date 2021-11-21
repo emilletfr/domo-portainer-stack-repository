@@ -5,7 +5,7 @@ services:
     container_name: eclipse-mosquitto-2.0.14
     restart: unless-stopped
     volumes:
-      - /home/pi/Documents/mosquitto-data:/mosquitto
+      - /home/pi/Documents/domo-server-persist/mosquitto-data:/mosquitto
     ports:
       - "1883:1883"
       - "9001:9001"
@@ -18,7 +18,7 @@ services:
     environment:
       - TZ=Europe/Paris
     volumes:
-      - /home/pi/Documents/zigbee2mqtt-data:/app/data
+      - /home/pi/Documents/domo-server-persist/zigbee2mqtt-data:/app/data
       - /run/udev:/run/udev:ro
     ports:
       - 8080:8080
@@ -32,6 +32,6 @@ services:
     environment:
       - TZ=Europe/Paris
     volumes:
-      - /home/pi/Documents/node-red-data:/data
+      - /home/pi/Documents/domo-server-persist/node-red-data:/data
     network_mode: host
     
