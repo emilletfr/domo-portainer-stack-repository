@@ -32,7 +32,7 @@ services:
     environment:
       - TZ=Europe/Paris
     volumes:
-      - node-red-data:/data
+      - /home/pi/Documents/node-red-data:/data
     network_mode: host
 
 volumes:
