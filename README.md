@@ -2,8 +2,9 @@
 domo portainer stack repository
 
 
-/home/pi/Documents/zigbee2mqtt-data/configuration.yaml 
+## /home/pi/Documents/zigbee2mqtt-data/configuration.yaml 
 
+```yaml
 homeassistant: false
 permit_join: true
 mqtt:
@@ -54,4 +55,4 @@ devices:
     friendly_name: Garage-Door-Vibration
   '0x00158d00044944e4':
     friendly_name: DiningRoom-Occupancy
-
+```
