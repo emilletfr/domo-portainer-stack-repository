@@ -18,6 +18,7 @@ services:
     environment:
       - TZ=Europe/Paris
     volumes:
+      - /home/pi/Documents/domo-server-persist:/app/domo-server-persist
       - /home/pi/Documents/domo-server-persist/zigbee2mqtt-data:/app/data
       - /run/udev:/run/udev:ro
     ports:
