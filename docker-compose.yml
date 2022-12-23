@@ -33,12 +33,12 @@ services:
       - TZ=Europe/Paris
     entrypoint: []
     command: bash -c "
-      npm install node-red-contrib-debounce && 
-      npm install node-red-contrib-homekit-bridged && 
-      npm install node-red-contrib-moment && 
-      npm install node-red-dashboard && 
-      npm install node-red-node-email && 
-      npm install node-red-node-ping && 
+      npm install node-red-contrib-debounce@0.0.2 && 
+      npm install node-red-contrib-homekit-bridged@1.4.3 && 
+      npm install node-red-contrib-moment@4.0.0 && 
+      npm install node-red-dashboard@3.1.7 && 
+      npm install node-red-node-email@1.15.1 && 
+      npm install node-red-node-ping@0.3.1 && 
       node -v &&  node node_modules/node-red/red.js"
     volumes:
       - /home/pi/Documents/domo-server-persist/node-red-data:/data
