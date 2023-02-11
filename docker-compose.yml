@@ -26,8 +26,8 @@ services:
       - /dev/ttyUSB0:/dev/ttyUSB0
 
   node-red:
-    image: nodered/node-red:2.2.2
-    container_name: node-red-2.2.2
+    image: nodered/node-red:3.0.2
+    container_name: node-red-3.0.2
     restart: unless-stopped
     environment:
       - TZ=Europe/Paris
