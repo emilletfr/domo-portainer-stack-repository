@@ -41,6 +41,6 @@ services:
       npm install node-red-node-ping@0.3.3 && 
       node -v &&  node node_modules/node-red/red.js"
     volumes:
-      - /home/pi/Documents/domo-server-persist/node-red-data:/data
+      - /home/pi/Documents/domo-server-persist/node-red-data2:/data
     network_mode: host
     
