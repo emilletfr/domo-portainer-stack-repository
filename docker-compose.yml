@@ -42,6 +42,5 @@ services:
       node -v &&  node node_modules/node-red/red.js"
     volumes:
       - /home/pi/Documents/domo-server-persist/node-red-data:/data
-      - /home/pi/Documents/domo-server-persist:/home/domo-server-persist
     network_mode: host
     
