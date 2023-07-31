@@ -24,6 +24,17 @@ services:
       - 8080:8080
     devices:
       - /dev/ttyUSB0:/dev/ttyUSB0
+      
+  bwalink:
+    image: ghcr.io/jshank/bwalink:latest
+    container_name: bwalink
+    restart: unless-stopped
+    environment:
+      MQTT_URI: mqtt://192.168.8.10 
+      BRIDGE_IP: 192.168.8.11
+      BRIDGE_PORT: 8899
+      TZ: America/Los_Angeles 
+      LOG_LEVEL: INFO # Any of FATAL, ERROR, WARN, INFO or DEBUG
 
   node-red:
     image: nodered/node-red:3.0.2
