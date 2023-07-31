@@ -30,7 +30,7 @@ services:
     container_name: bwalink
     restart: unless-stopped
     environment:
-      MQTT_URI: mqtt://192.168.8.10 
+      MQTT_URI: mqtt://localhost 
       BRIDGE_IP: 192.168.8.11
       BRIDGE_PORT: 8899
       TZ: America/Los_Angeles 
