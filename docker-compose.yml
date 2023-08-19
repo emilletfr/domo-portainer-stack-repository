@@ -1,8 +1,8 @@
 version: '3.7'
 services:
   mqtt:
-    image: eclipse-mosquitto:2.0.14
-    container_name: eclipse-mosquitto-2.0.14
+    image: eclipse-mosquitto:2.0.16
+    container_name: eclipse-mosquitto-2.0.16
     restart: unless-stopped
     volumes:
       - /home/pi/Documents/domo-server-persist/mosquitto-data:/mosquitto
