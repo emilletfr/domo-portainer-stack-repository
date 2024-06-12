@@ -12,8 +12,8 @@ services:
     command: "mosquitto -c /mosquitto-no-auth.conf"
 
   zigbee2mqtt:
-    image: koenkk/zigbee2mqtt:1.35.1
-    container_name: zigbee2mqtt-1.35.1
+    image: koenkk/zigbee2mqtt:1.38.0
+    container_name: zigbee2mqtt-1.38.0
     restart: unless-stopped
     environment:
       - TZ=Europe/Paris
