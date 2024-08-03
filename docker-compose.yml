@@ -21,7 +21,7 @@ services:
       - /home/pi/Documents/domo-server-persist/zigbee2mqtt-data:/app/data
       - /run/udev:/run/udev:ro
     ports:
-      - 8080:8080
+      - 8081:8080
     devices:
       - /dev/ttyUSB0:/dev/ttyUSB0
 
