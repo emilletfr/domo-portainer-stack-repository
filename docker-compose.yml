@@ -10,6 +10,10 @@ services:
       - "1883:1883"
       - "9001:9001"
     command: "mosquitto -c /mosquitto-no-auth.conf"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
 
   zigbee2mqtt:
     image: koenkk/zigbee2mqtt:1.38.0
@@ -48,6 +52,10 @@ services:
     volumes:
       - /home/pi/Documents/domo-server-persist/node-red-data:/data
     network_mode: host
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
 
   netdata:
     image: netdata/netdata:v1.45.3
@@ -70,6 +78,10 @@ services:
       - /sys:/host/sys:ro
       - /etc/os-release:/host/etc/os-release:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
 
   bwalink:
     image: ghcr.io/emilletfr/bwalink:latest
@@ -86,6 +98,10 @@ services:
       BRIDGE_PORT: 8899
       TZ: Europe/Paris 
       LOG_LEVEL: WARN # Any of FATAL, ERROR, WARN, INFO or DEBUG
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
 
 volumes:
   netdataconfig:
