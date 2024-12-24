@@ -16,8 +16,8 @@ services:
         max-size: "50m"
 
   zigbee2mqtt:
-    image: koenkk/zigbee2mqtt:1.38.0
-    container_name: zigbee2mqtt-1.38.0
+    image: koenkk/zigbee2mqtt:1.42.0
+    container_name: zigbee2mqtt-1.42.0
     restart: unless-stopped
     environment:
       - TZ=Europe/Paris
@@ -34,8 +34,8 @@ services:
         max-size: "50m"
 
   node-red:
-    image: nodered/node-red:4.0.1
-    container_name: node-red-4.0.1
+    image: nodered/node-red:4.0.8
+    container_name: node-red-4.0.8
     restart: unless-stopped
     environment:
       - TZ=Europe/Paris
