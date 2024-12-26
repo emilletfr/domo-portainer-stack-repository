@@ -39,16 +39,6 @@ services:
     restart: unless-stopped
     environment:
       - TZ=Europe/Paris
- #   entrypoint: []
- #   command: bash -c "
- #     npm install node-red-contrib-debounce@0.0.2 && 
- #     npm install node-red-contrib-homekit-bridged@1.6.1 && 
- #     npm install node-red-contrib-melcloud@1.6.0 && 
- #     npm install node-red-contrib-moment@5.0.0 && 
- #     npm install node-red-dashboard@3.6.5 && 
- #     npm install node-red-node-email@3.0.0 && 
- #     npm install node-red-node-ping@0.3.3 && 
- #     node -v &&  node node_modules/node-red/red.js"
     volumes:
       - /home/pi/Documents/domo-server-persist/node-red-data:/data
     network_mode: host
@@ -56,6 +46,12 @@ services:
       driver: "json-file"
       options:
         max-size: "50m"
+  #  node-red-contrib-debounce@0.0.2
+  #  node-red-contrib-homekit-bridged@1.7.2
+  #  node-red-contrib-melcloud@1.6.0
+  #  node-red-contrib-moment@5.0.0
+  #  node-red-dashboard@3.6.5
+  #  node-red-node-ping@0.3.3
 
   netdata:
     image: netdata/netdata:v1.45.3
