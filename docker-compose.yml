@@ -47,7 +47,7 @@ services:
       options:
         max-size: "50m"
   #  node-red-contrib-debounce@0.0.2
-  #  node-red-contrib-homekit-bridged@1.7.2
+  #  node-red-contrib-homekit-bridged@1.7.3
   #  node-red-contrib-melcloud@1.6.0
   #  node-red-contrib-moment@5.0.0
   #  node-red-dashboard@3.6.5
