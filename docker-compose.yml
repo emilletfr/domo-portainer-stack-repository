@@ -16,8 +16,8 @@ services:
         max-size: "50m"
 
   zigbee2mqtt:
-    image: koenkk/zigbee2mqtt:2.6.0
-    container_name: zigbee2mqtt-2.6.0
+    image: koenkk/zigbee2mqtt:2.9.1
+    container_name: zigbee2mqtt-2.9.1
     restart: unless-stopped
     environment:
       - TZ=Europe/Paris
