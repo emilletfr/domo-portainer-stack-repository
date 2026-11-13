@@ -59,6 +59,7 @@ services:
   #   git clone https://github.com/Legobas/micronova2mqtt.git && docker build -t micronova2mqtt:1.39.0 .
   micronova2mqtt:
     image: micronova2mqtt:1.39.0
+    pull_policy: never
     container_name: micronova2mqtt-1.39.0
     restart: unless-stopped
     depends_on:
@@ -101,8 +102,8 @@ services:
         max-size: "50m"
         
   bwalink:
-    image: ghcr.io/emilletfr/bwalink:1.0.0
-    container_name: bwalink-1.0.0
+    image: ghcr.io/emilletfr/bwalink:latest
+    container_name: bwalink
     restart: unless-stopped
     environment:
       # See @url:`https://iotbyhvm.ooo/using-uris-to-connect-to-a-mqtt-server/` for MQTT_URI format
