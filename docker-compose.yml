@@ -14,10 +14,9 @@ services:
       driver: "json-file"
       options:
         max-size: "50m"
-
   zigbee2mqtt:
-    image: koenkk/zigbee2mqtt:2.13.0
-    container_name: zigbee2mqtt-2.13.0
+    image: koenkk/zigbee2mqtt:2.14.3
+    container_name: zigbee2mqtt-2.14.3
     restart: unless-stopped
     environment:
       - TZ=Europe/Paris
@@ -32,10 +31,9 @@ services:
       driver: "json-file"
       options:
         max-size: "50m"
-
   node-red:
-    image: nodered/node-red:5.0.4
-    container_name: node-red-5.0.4
+    image: nodered/node-red:5.0.9
+    container_name: node-red-5.0.9
     restart: unless-stopped
     environment:
       - TZ=Europe/Paris
@@ -52,10 +50,35 @@ services:
   #  node-red-contrib-moment@5.0.0
   #  node-red-dashboard@3.6.5
   #  node-red-node-ping@0.3.3
-
+  # Pont poêle à granulés Cadel Luce Plus 9 (app Easy Connect Plus / Micronova Agua IOT) -> MQTT
+  # MN_EMAIL et MN_PASSWORD sont à définir dans Portainer : Stacks -> Environment variables
+  micronova2mqtt:
+    image: legobas/micronova2mqtt:1.39.0
+    container_name: micronova2mqtt-1.39.0
+    restart: unless-stopped
+    depends_on:
+      - mqtt
+    environment:
+      LOGLEVEL: info
+      TZ: Europe/Paris
+      MN_BRAND: mcz-easy-connect-plus
+      MN_EMAIL: ${MN_EMAIL}
+      MN_PASSWORD: ${MN_PASSWORD}
+    volumes:
+      - /home/pi/Documents/domo-server-persist/micronova2mqtt-data:/data:rw
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - |
+        printf 'mqtt:\n  url: mqtt:1883\nmicronova:\n  brand: %s\n  email: "%s"\n  password: "%s"\n  log_reg_keys: true\n' \
+          "$MN_BRAND" "$MN_EMAIL" "$MN_PASSWORD" > /data/micronova2mqtt.yml
+        exec /app
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
   netdata:
-    image: netdata/netdata:v2.10.4
-    container_name: netdata-2.10.4
+    image: netdata/netdata:v2.12.3
+    container_name: netdata-2.12.3
     pid: host
     network_mode: host
     restart: unless-stopped
@@ -78,27 +101,25 @@ services:
       driver: "json-file"
       options:
         max-size: "50m"
-
   bwalink:
-    image: ghcr.io/emilletfr/bwalink:latest
-    container_name: bwalink
+    image: ghcr.io/emilletfr/bwalink:1.0.0
+    container_name: bwalink-1.0.0
     restart: unless-stopped
     environment:
-      # See https://iotbyhvm.ooo/using-uris-to-connect-to-a-mqtt-server/ for MQTT_URI format
-      # MQTT_URI *must* be properly URI encoded, e.g. mqtt://useename:pa##word@10.1.10.2 would 
-      # be mqtt://username:pa%23%23word@10.1.10.2
-      # BRIDGE_IP and BRIDGE_PORT are the address and port for your serial to IP device or 
+      # See @url:`https://iotbyhvm.ooo/using-uris-to-connect-to-a-mqtt-server/` for MQTT_URI format
+      # MQTT_URI *must* be properly URI encoded, e.g. mqtt://username:pa##word@10.1.10.2 would
+      # be mqtt://username:***@10.1.10.2
+      # BRIDGE_IP and BRIDGE_PORT are the address and port for your serial to IP device or
       # host running ser2net, socat or ESPEasy serial server
       MQTT_URI: mqtt://192.168.8.10
       BRIDGE_IP: 192.168.8.11
       BRIDGE_PORT: 8899
-      TZ: Europe/Paris 
+      TZ: Europe/Paris
       LOG_LEVEL: WARN # Any of FATAL, ERROR, WARN, INFO or DEBUG
     logging:
       driver: "json-file"
       options:
         max-size: "50m"
-
 volumes:
   netdataconfig:
   netdatalib:
