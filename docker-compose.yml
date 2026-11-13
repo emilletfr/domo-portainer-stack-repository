@@ -13,6 +13,7 @@ services:
       driver: "json-file"
       options:
         max-size: "50m"
+        
   zigbee2mqtt:
     image: koenkk/zigbee2mqtt:2.14.3
     container_name: zigbee2mqtt-2.14.3
@@ -30,6 +31,7 @@ services:
       driver: "json-file"
       options:
         max-size: "50m"
+        
   node-red:
     image: nodered/node-red:5.0.9
     container_name: node-red-5.0.9
@@ -49,32 +51,29 @@ services:
   #  node-red-contrib-moment@5.0.0
   #  node-red-dashboard@3.6.5
   #  node-red-node-ping@0.3.3
+  
   # Pont poêle à granulés Cadel Luce Plus 9 (app Easy Connect Plus / Micronova Agua IOT) -> MQTT
-  # MN_EMAIL et MN_PASSWORD sont à définir dans Portainer : Stacks -> Environment variables
+  # La configuration (email + mot de passe) est dans le fichier hôte :
+  #   /home/pi/Documents/domo-server-persist/micronova2mqtt-data/micronova2mqtt.yml
+  # Image construite localement sur le Pi (l'image Docker Hub n'existe qu'en amd64) :
+  #   git clone https://github.com/Legobas/micronova2mqtt.git && docker build -t micronova2mqtt:1.39.0 .
   micronova2mqtt:
-    image: legobas/micronova2mqtt:1.39.0
+    image: micronova2mqtt:1.39.0
     container_name: micronova2mqtt-1.39.0
     restart: unless-stopped
     depends_on:
       - mqtt
+    # platform: linux/amd64   # à décommenter uniquement si vous utilisez l'image Docker Hub via QEMU
     environment:
       LOGLEVEL: info
       TZ: Europe/Paris
-      MN_BRAND: mcz-easy-connect-plus
-      MN_EMAIL: ${MN_EMAIL}
-      MN_PASSWORD: ${MN_PASSWORD}
     volumes:
       - /home/pi/Documents/domo-server-persist/micronova2mqtt-data:/data:rw
-    entrypoint: ["/bin/sh", "-c"]
-    command:
-      - |
-        printf 'mqtt:\n  url: mqtt:1883\nmicronova:\n  brand: %s\n  email: "%s"\n  password: "%s"\n  log_reg_keys: true\n' \
-          "$MN_BRAND" "$MN_EMAIL" "$MN_PASSWORD" > /data/micronova2mqtt.yml
-        exec /app
     logging:
       driver: "json-file"
       options:
         max-size: "50m"
+        
   netdata:
     image: netdata/netdata:v2.12.3
     container_name: netdata-2.12.3
@@ -100,6 +99,7 @@ services:
       driver: "json-file"
       options:
         max-size: "50m"
+        
   bwalink:
     image: ghcr.io/emilletfr/bwalink:1.0.0
     container_name: bwalink-1.0.0
@@ -119,6 +119,7 @@ services:
       driver: "json-file"
       options:
         max-size: "50m"
+        
 volumes:
   netdataconfig:
   netdatalib:
