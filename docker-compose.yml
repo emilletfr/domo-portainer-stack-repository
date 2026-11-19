@@ -33,8 +33,8 @@ services:
         max-size: "50m"
         
   node-red:
-    image: nodered/node-red:5.0.9
-    container_name: node-red-5.0.9
+    image: nodered/node-red:5.0.10
+    container_name: node-red-5.0.10
     restart: unless-stopped
     environment:
       - TZ=Europe/Paris
@@ -49,7 +49,7 @@ services:
   #  node-red-contrib-homekit-bridged@1.7.3
   #  node-red-contrib-melcloud@1.6.0
   #  node-red-contrib-moment@5.0.0
-  #  node-red-dashboard@3.6.5
+  #  node-red-dashboard@3.6.6
   #  node-red-node-ping@0.3.3
   
   # Pont poêle à granulés Cadel Luce Plus 9 (app Easy Connect Plus / Micronova Agua IOT) -> MQTT
