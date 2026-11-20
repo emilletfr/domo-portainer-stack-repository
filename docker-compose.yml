@@ -40,17 +40,27 @@ services:
       - TZ=Europe/Paris
     volumes:
       - /home/pi/Documents/domo-server-persist/node-red-data:/data
+      # /run/dbus : indispensable pour le pont HomeKit (redmatic-homekit).
+      # Sans ce socket, l'annonce mDNS passe par ciao, qui publie les adresses
+      # des reseaux Docker (172.x) et iOS repond « Accessoire injoignable ».
+      - /run/dbus:/run/dbus
     network_mode: host
     logging:
       driver: "json-file"
       options:
         max-size: "50m"
+  # Modules Node-RED installes (palette) :
+  #  @firebase/app@0.9.10
+  #  @firebase/firestore@3.12.0
+  #  firebase@9.22.0
+  #  firebase-admin@11.8.0
   #  node-red-contrib-debounce@0.0.2
-  #  node-red-contrib-homekit-bridged@1.7.3
   #  node-red-contrib-melcloud@1.6.0
   #  node-red-contrib-moment@5.0.0
   #  node-red-dashboard@3.6.6
+  #  node-red-node-email@3.0.3
   #  node-red-node-ping@0.3.3
+  #  redmatic-homekit@4.2.0
   
   # Pont poêle à granulés Cadel Luce Plus 9 (app Easy Connect Plus / Micronova Agua IOT) -> MQTT
   # La configuration (email + mot de passe) est dans le fichier hôte :
